@@ -11,4 +11,6 @@ CTestTestfile.cmake
 _deps
 CMakeUserPresets.json
 build
-FileDivisor.exe
+.vscode
+File Divisor.exe
+File Divisor GUI.exe

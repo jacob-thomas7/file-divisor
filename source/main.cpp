@@ -1,8 +1,9 @@
-#include <windows.h>
-#include <tchar.h>
+#include <iostream>
 
-int WINAPI WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR args, int cmd_show)
-{
-    MessageBox(NULL, _T("Code compiled successfully!"), _T("File Divisor"), NULL);
+#include "config.h"
+
+using namespace file_divisor;
+
+int main(){
+    std::cout << config::PROJECT_NAME << " version " << config::PROJECT_VER << std::endl;
 }
-

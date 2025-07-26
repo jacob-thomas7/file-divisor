@@ -1,0 +1,12 @@
+#pragma once
+
+#include <string>
+
+namespace file_divisor::config {
+    //CMake will generate the project values
+    const std::string PROJECT_NAME =        "@PROJECT_NAME@";
+    const std::string PROJECT_VER =         "@PROJECT_VERSION@";
+    const std::string PROJECT_VER_MAJOR =   "@PROJECT_VERSION_MAJOR@";
+    const std::string PROJECT_VER_MINOR =   "@PROJECT_VERSION_MINOR@";
+    const std::string PTOJECT_VER_PATCH =   "@PROJECT_VERSION_PATCH@";
+}
