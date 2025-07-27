@@ -12,7 +12,7 @@ _deps
 CMakeUserPresets.json
 build
 .vscode
-File Divisor.exe
-File Divisor GUI.exe
-File Divisor Tests.exe
-FileDivisor.dll
+file-divisor.dll
+divisor.exe
+divisor-gui.exe
+divisor-tests.exe
