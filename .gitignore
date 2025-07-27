@@ -14,3 +14,5 @@ build
 .vscode
 File Divisor.exe
 File Divisor GUI.exe
+File Divisor Tests.exe
+FileDivisor.dll

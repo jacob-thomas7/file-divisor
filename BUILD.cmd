@@ -12,13 +12,20 @@ echo:
 echo [36m------------Build-----------[0m
 cmake --build "build"
 
+if not %errorlevel% == 0 (
+    echo CMake exited with error code %errorlevel%. Build process stopped.
+    exit /b %errorlevel%
+)
+
 :: Rename and copy to root directory for convinience
 cd "build/Debug"
-copy "FileDivisor.exe" "../../File Divisor.exe" /Y
-copy "FileDivisor_GUI.exe" "../../File Divisor GUI.exe" /Y
+copy "divisor.exe" "../../divisor.exe" /Y
+copy "divisor-gui.exe" "../../divisor-gui.exe" /Y
+copy "divisor-tests.exe" "../../divisor-tests.exe" /Y
+copy "file-divisor.dll" "../../file-divisor.dll" /Y
 cd "../../"
 
 :: Run the project
 echo:
 echo [36m-------------Run------------[0m
-"File Divisor.exe"
+"divisor"

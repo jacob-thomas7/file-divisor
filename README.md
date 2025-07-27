@@ -11,7 +11,7 @@ A File Explorer alternative for Windows which supports viewing files by differen
 
 ## Description
 File Divisor is based on the idea that users do not always want their files organized the same
-way all the time. It could be frustring if, for example, they originally decided to sort their
+way all the time. It could be frustrating if, for example, they originally decided to sort their
 photographs into subdirectories based on their subject, but one day they decide they want to
 see all photographs taken in a certain timeframe. In a traditional file system, they would have
 to manually go through each subdirectory and check the date of each file.
