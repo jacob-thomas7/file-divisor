@@ -7,7 +7,7 @@ project(FileDivisor VERSION 0.0.1 LANGUAGES CXX)
 set(LIBRARY_TYPE SHARED) # Supports STATIC or SHARED
 
 # Generate config file
-configure_file(source/library/config.h.in ${CMAKE_BINARY_DIR}/generated/config.h)
+configure_file(source/library/config.hpp.in ${CMAKE_BINARY_DIR}/generated/config.hpp)
 include_directories(${CMAKE_BINARY_DIR}/generated/)
 
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)

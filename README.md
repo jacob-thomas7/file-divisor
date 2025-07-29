@@ -1,11 +1,4 @@
-<div style="text-align: center">
-
-<img alt="C++ Badge"        src="https://img.shields.io/badge/Language-C++-purple"/>
-<img alt="Windows Badge"    src="https://img.shields.io/badge/OS-Windows-blue"/>
-<img alt="MIT Badge"        src="https://img.shields.io/badge/License-MIT-yellow.svg">
-
-# File Divisor
-</div>
+# File Divisor <img alt="C++ Badge" src="https://img.shields.io/badge/Language-C++-purple"/> <img alt="Windows Badge" src="https://img.shields.io/badge/OS-Windows-blue"/> <img alt="MIT Badge" src="https://img.shields.io/badge/License-MIT-yellow.svg">
 
 A File Explorer alternative for Windows which supports viewing files by different categories.
 
@@ -26,7 +19,7 @@ simultaneously, allowing users to efficiently find the files they need.
 ### Program
 CMake version 3.12 or greater is required.
 
-Simply run the provided <code>build.bat</code> file to compile the code. The resulting executables
+Simply run the provided <code>build.cmd</code> file to compile the code. The resulting executables
 can now be found in the root directory.
 
 ## System Requirements
