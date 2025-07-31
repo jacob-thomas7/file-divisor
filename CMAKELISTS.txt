@@ -7,17 +7,17 @@ project(FileDivisor VERSION 0.0.1 LANGUAGES CXX)
 set(LIBRARY_TYPE SHARED) # Supports STATIC or SHARED
 
 # Generate config file
-configure_file(source/library/config.hpp.in ${CMAKE_BINARY_DIR}/generated/config.hpp)
+configure_file(source/library/include/config.hpp.in ${CMAKE_BINARY_DIR}/generated/config.hpp)
 include_directories(${CMAKE_BINARY_DIR}/generated/)
 
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 # Library
 add_library(${PROJECT_NAME} ${LIBRARY_TYPE}
-    source/library/file_divisor.cpp
+    source/library/src/search.cpp
 )
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME file-divisor)
-include_directories(${CMAKE_SOURCE_DIR}/source/library)
+include_directories(${CMAKE_SOURCE_DIR}/source/library/include)
 
 # CLI Executable
 add_executable(${PROJECT_NAME}_CLI

@@ -1,7 +1,7 @@
 #include <windows.h>
 #include <tchar.h>
 
-#include "config.h"
+#include "config.hpp"
 
 using namespace file_divisor;
 

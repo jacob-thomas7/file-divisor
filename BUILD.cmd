@@ -28,4 +28,4 @@ cd "../../"
 :: Run the project
 echo:
 echo [36m-------------Run------------[0m
-"divisor"
+"divisor-tests"
