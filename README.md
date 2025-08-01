@@ -1,4 +1,5 @@
-# File Divisor <img alt="C++ Badge" src="https://img.shields.io/badge/Language-C++-purple"/> <img alt="Windows Badge" src="https://img.shields.io/badge/OS-Windows-blue"/> <img alt="MIT Badge" src="https://img.shields.io/badge/License-MIT-yellow.svg">
+# File Divisor 
+<img alt="C++ Badge" src="https://img.shields.io/badge/Language-C++-purple"/> <img alt="Windows Badge" src="https://img.shields.io/badge/OS-Windows-blue"/> <img alt="MIT Badge" src="https://img.shields.io/badge/License-MIT-yellow.svg">
 
 A File Explorer alternative for Windows which supports viewing files by different categories.
 

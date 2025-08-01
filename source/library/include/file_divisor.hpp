@@ -3,4 +3,5 @@
 //! The root library namespace.
 namespace file_divisor {}
 
-#include <config.hpp>
+#include "config.hpp"
+#include "search.hpp"

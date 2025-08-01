@@ -4,9 +4,9 @@
 
 namespace file_divisor::config {
     // CMake will generate the project values
-    const std::string PROJECT_NAME =        "@PROJECT_NAME@";
-    const std::string PROJECT_VER =         "@PROJECT_VERSION@";
-    const std::string PROJECT_VER_MAJOR =   "@PROJECT_VERSION_MAJOR@";
-    const std::string PROJECT_VER_MINOR =   "@PROJECT_VERSION_MINOR@";
-    const std::string PTOJECT_VER_PATCH =   "@PROJECT_VERSION_PATCH@";
+    const std::string_view PROJECT_NAME =        "@PROJECT_NAME@";
+    const std::string_view PROJECT_VER =         "@PROJECT_VERSION@";
+    const std::string_view PROJECT_VER_MAJOR =   "@PROJECT_VERSION_MAJOR@";
+    const std::string_view PROJECT_VER_MINOR =   "@PROJECT_VERSION_MINOR@";
+    const std::string_view PTOJECT_VER_PATCH =   "@PROJECT_VERSION_PATCH@";
 }

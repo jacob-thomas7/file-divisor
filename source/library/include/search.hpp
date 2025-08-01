@@ -16,8 +16,8 @@ namespace file_divisor {
     
     //! Determines how a filter is used to include or exclude files.
     enum class FilterType {
-        exclude, //!< Excludes files that a Filter evaluator function returns true on.
-        include  //!< Includes files that a Filter evaluator function returns true on.
+        exclude, //!< Excludes files that a Filter selector function returns true on. Includes files that it returns false on.
+        include  //!< Includes files that a Filter selector function returns true on. Excludes files that it returns false on.
     };
 
     //! Determines what files should be included in a search.
@@ -33,7 +33,7 @@ namespace file_divisor {
     };
 
     //! Stores information on what files to search for.
-    class SearchTerms {
+    class Search {
         public:
         
         //! Stores the top-level system directories to begin searching.
@@ -46,16 +46,25 @@ namespace file_divisor {
         //! Adds a system path to search for files.
         void add_system_path(const std::filesystem::path& path);
 
-        //! Adds a function to filter files.
+        //! Adds a filter to apply when searching for files.
         void add_filter(const std::function<bool(const std::filesystem::path&)>& selector, FilterType type);
 
-        //sort
-    };
+        //TODO: sort
 
-    //! Finds all files that match the given search terms.
-    //! Searches in all given system paths, excludes filter matches, and sorts based on the given sorting function.
-    //!
-    //! @param search_terms The SearchTerms to evaluate.
-    //! @return A vector of system paths which match the SearchTerms.
-    std::vector<std::filesystem::path>&& search(const SearchTerms& search_terms);
+        //! Finds all files that match the given search terms.
+        //! Searches in all given system paths, excludes filter matches, and sorts based on the given sorting function.
+        //!
+        //! @throws std::invalid_argument if a system path is not a regular file or a directory.
+        //! @return A vector of system paths which match the SearchTerms.
+        std::vector<std::filesystem::path>&& search();
+
+        private:
+
+        //! Helper function for search to allow recursive directory searches.
+        //!
+        //! @param system_path The system path (regular file or directory) to search.
+        //! @param result The output vector which will store selected files.
+        //! @throws std::invalid_argument if a system path is not a regular file or a directory.
+        void add_valid_files(const std::filesystem::path& system_path, std::vector<std::filesystem::path>& result);
+    };
 }
