@@ -19,7 +19,8 @@ namespace file_divisor {
         FilterType type; //!< Determines if selected files should be included or excluded.
 
         //! Constructor for all members.
-        Filter(std::function<bool(const std::filesystem::path&)> selector, FilterType type);
+        Filter(std::function<bool(const std::filesystem::path&)> selector, FilterType type) :
+            selector(selector), type(type) {}
     };
 
     //! The return result of sorting functions between two inputs.
@@ -27,6 +28,15 @@ namespace file_divisor {
         before, //!< States that the first input should be sorted before the second.
         indeterminate, //!< States that the sorting function cannot tell the sorted order of the inputs.
         after //!< States that the first input should be sorted after the second.
+    };
+
+    struct SortFunction {
+        std::function<SortResult(const std::filesystem::path&, const std::filesystem::path&)> function;
+        bool reverse;
+
+        //! Constructor for all members.
+        SortFunction(std::function<SortResult(const std::filesystem::path&, const std::filesystem::path&)> function, bool reverse) :
+            function(function), reverse(reverse) {}
     };
 
     //! Stores information on what files to search for.
@@ -43,7 +53,7 @@ namespace file_divisor {
         //! Stores sorting functions to be applied when searching.
         //! Sorting occurs with the first function, and only continues to the next if the result is indeterminate,
         //! usually meaning that the property the function uses is the same for both files.
-        std::vector<std::function<SortResult(const std::filesystem::path&, const std::filesystem::path&)>> sort_functions;
+        std::vector<SortFunction> sort_functions;
 
         public:
 
@@ -55,6 +65,9 @@ namespace file_divisor {
 
         //! Adds a sorting function to apply when searching for files.
         void add_sort_function(const std::function<SortResult(const std::filesystem::path&, const std::filesystem::path&)>& function);
+
+        //! Adds a reversed sorting function to apply when searching for files.
+        void add_sort_function_reverse(const std::function<SortResult(const std::filesystem::path&, const std::filesystem::path&)>& function);
 
         //! Finds all files that match the given search terms.
         //! Searches in all given system paths, excludes filter matches, and sorts based on the given sorting function.

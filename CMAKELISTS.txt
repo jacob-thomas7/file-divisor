@@ -24,18 +24,18 @@ add_executable(${PROJECT_NAME}_CLI
     source/cli_executable/main.cpp
 )
 set_target_properties(${PROJECT_NAME}_CLI PROPERTIES OUTPUT_NAME divisor)
-target_link_libraries(${PROJECT_NAME}_CLI PUBLIC ${CMAKE_BINARY_DIR}/Debug/file-divisor.lib)
+target_link_libraries(${PROJECT_NAME}_CLI PUBLIC ${PROJECT_NAME})
 
 # GUI Executable
-add_executable(${PROJECT_NAME}_GUI WIN32
-    source/gui_executable/main.cpp
-)
-set_target_properties(${PROJECT_NAME}_GUI PROPERTIES OUTPUT_NAME divisor-gui)
-target_link_libraries(${PROJECT_NAME}_GUI PUBLIC ${CMAKE_BINARY_DIR}/Debug/file-divisor.lib)
+# add_executable(${PROJECT_NAME}_GUI WIN32
+#    source/gui_executable/main.cpp
+# )
+# set_target_properties(${PROJECT_NAME}_GUI PROPERTIES OUTPUT_NAME divisor-gui)
+# target_link_libraries(${PROJECT_NAME}_GUI PUBLIC ${PROJECT_NAME})
 
 # Test Suite Executable
 add_executable(${PROJECT_NAME}_TEST
     tests/main.cpp
 )
 set_target_properties(${PROJECT_NAME}_TEST PROPERTIES OUTPUT_NAME divisor-tests)
-target_link_libraries(${PROJECT_NAME}_TEST PUBLIC ${CMAKE_BINARY_DIR}/Debug/file-divisor.lib)
+target_link_libraries(${PROJECT_NAME}_TEST PUBLIC ${PROJECT_NAME})

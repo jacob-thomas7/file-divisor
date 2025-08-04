@@ -25,18 +25,6 @@ namespace file_divisor {
         return SortResult::indeterminate;
     }
 
-    //! Sorts files reverse alphabetically by their extension.
-    //! @ingroup sorting_functions
-    inline SortResult sort_extension_reverse(const std::filesystem::path& path1, const std::filesystem::path& path2){
-        if(path1.extension() < path2.extension())
-            return SortResult::after;
-        
-        if(path1.extension() > path2.extension())
-            return SortResult::before;
-
-        return SortResult::indeterminate;
-    }
-
     //! Sorts files alphabetically by their stem (filename without extension).
     //! @ingroup sorting_functions
     inline SortResult sort_stem(const std::filesystem::path& path1, const std::filesystem::path& path2){

@@ -8,7 +8,7 @@ int main(){
         search.add_filter(FILE_DIVISOR__FILTER__EXTENSION(".html"), file_divisor::FilterType::exclude);
 
         search.add_sort_function(file_divisor::sort_stem);
-        search.add_sort_function(file_divisor::sort_extension_reverse);
+        search.add_sort_function_reverse(file_divisor::sort_extension);
         
         auto files = search.search();
         

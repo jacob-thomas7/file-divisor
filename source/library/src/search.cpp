@@ -1,13 +1,6 @@
 #include "search.hpp"
 
-#include <iostream> //TODO remove
-
 namespace file_divisor {
-    Filter::Filter(std::function<bool(const std::filesystem::path&)> selector, FilterType type){
-        this->selector = selector;
-        this->type = type;
-    }
-
     void Search::add_system_path(const std::filesystem::path& path){
         this->system_paths.emplace_back(path);
     }
@@ -17,7 +10,11 @@ namespace file_divisor {
     }
 
     void Search::add_sort_function(const std::function<SortResult(const std::filesystem::path&, const std::filesystem::path&)>& function){
-        this->sort_functions.emplace_back(function);
+        this->sort_functions.emplace_back(function, false);
+    }
+
+    void Search::add_sort_function_reverse(const std::function<SortResult(const std::filesystem::path&, const std::filesystem::path&)>& function){
+        this->sort_functions.emplace_back(function, true);
     }
 
     std::vector<std::filesystem::path>&& Search::search() const {
@@ -49,10 +46,10 @@ namespace file_divisor {
                 // Sort during insertion
                 {
                     int existing_path_index = 0;
+                    SortResult compare_previous = compare(system_path, result, existing_path_index - 1);
+                    SortResult compare_current = compare(system_path, result, existing_path_index);
+                    
                     while(existing_path_index < result.size() + 1){
-                        SortResult compare_previous = compare(system_path, result, existing_path_index - 1);
-                        SortResult compare_current = compare(system_path, result, existing_path_index);
-
                         if(
                             (compare_previous == SortResult::after && compare_current == SortResult::indeterminate) ||
                             (compare_previous == SortResult::after && compare_current == SortResult::before) ||
@@ -62,7 +59,10 @@ namespace file_divisor {
                             return;
                         }
                         existing_path_index++;
+                        compare_previous = compare_current;
+                        compare_current = compare(system_path, result, existing_path_index);
                     }
+
                     result.emplace_back(system_path);
                     break;
                 }
@@ -82,17 +82,21 @@ namespace file_divisor {
     SortResult Search::compare(const std::filesystem::path& path, std::vector<std::filesystem::path>& result, int compare_to_index) const {
         if(compare_to_index < 0)
             return SortResult::after;
-        
+
         if(compare_to_index >= result.size())
             return SortResult::before;
-        
+
         std::filesystem::path& other_path = result[compare_to_index];
 
-        std::cout << "There is already a " << other_path << " when pushing " << path << "\n";
-
-        for(const auto& sort_function : this->sort_functions){
-            SortResult sort_result = sort_function(path, other_path);
+        for(const auto& sorter : this->sort_functions){
+            SortResult sort_result = sorter.function(path, other_path);
             if(sort_result != SortResult::indeterminate){
+                if(sorter.reverse){
+                    if(sort_result == SortResult::after)
+                        return SortResult::before;
+                    if(sort_result == SortResult::before)
+                        return SortResult::after;
+                }
                 return sort_result;
             }
         }
